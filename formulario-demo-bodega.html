@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BODEGA PRO - Solicitud Demo 5 Días</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px 30px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .header .demo-badge {
+            display: inline-block;
+            background: #ffd700;
+            color: #333;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .radio-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .radio-option label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .success-message {
+            display: none;
+            background: #4caf50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .success-message h2 {
+            margin-bottom: 10px;
+        }
+
+        .error-message {
+            color: #f44336;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background: #25d366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .info-text {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 10px;
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛒 BODEGA PRO v2.0</h1>
+            <p class="subtitle">by A2K Digital Studio</p>
+            <span class="demo-badge">⭐ DEMO GRATUITA 5 DÍAS</span>
+        </div>
+
+        <div class="info-text">
+            💎 Completa el formulario para generar tu licencia demo de 5 días. El Ingeniero Abigail te contactará para la video llamada demostrativa.
+        </div>
+
+        <form id="demoForm">
+            <div class="form-group">
+                <label for="nombre">Nombre Completo *</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Ej: Juan Pérez">
+                <span class="error-message" id="error-nombre">Por favor ingresa tu nombre</span>
+            </div>
+
+            <div class="form-group">
+                <label>Tipo de Persona *</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="natural" name="tipo" value="natural" checked>
+                        <label for="natural">Natural (Cédula)</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="juridica" name="tipo" value="juridica">
+                        <label for="juridica">Jurídica (RIF)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="documento" id="label-documento">Cédula *</label>
+                <input type="text" id="documento" name="documento" required placeholder="Ej: V-12345678">
+                <span class="error-message" id="error-documento">Por favor ingresa tu cédula/RIF</span>
+            </div>
+
+            <div class="form-group">
+                <label for="bodega">Nombre de la Bodega/Negocio *</label>
+                <input type="text" id="bodega" name="bodega" required placeholder="Ej: Bodega El Arepazo">
+                <span class="error-message" id="error-bodega">Por favor ingresa el nombre del negocio</span>
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Teléfono/WhatsApp *</label>
+                <input type="tel" id="telefono" name="telefono" required placeholder="Ej: +584121234567">
+                <span class="error-message" id="error-telefono">Por favor ingresa tu teléfono</span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo Electrónico (Opcional)</label>
+                <input type="email" id="email" name="email" placeholder="ejemplo@correo.com">
+            </div>
+
+            <button type="submit" class="submit-btn">🚀 Solicitar Demo Gratis</button>
+        </form>
+
+        <div class="success-message" id="successMessage">
+            <h2>✅ ¡Solicitud Enviada!</h2>
+            <p>Tu demo de BODEGA PRO v2.0 ha sido registrada exitosamente.</p>
+            <p><strong>El Ingeniero Abigail te contactará en los próximos minutos.</strong></p>
+            <a href="https://wa.me/584164117331" class="whatsapp-btn">💬 Ir a WhatsApp</a>
+        </div>
+    </div>
+
+    <script>
+        // Cambiar label según tipo de persona
+        const radioNatural = document.getElementById('natural');
+        const radioJuridica = document.getElementById('juridica');
+        const labelDocumento = document.getElementById('label-documento');
+        const inputDocumento = document.getElementById('documento');
+
+        radioNatural.addEventListener('change', function() {
+            if (this.checked) {
+                labelDocumento.textContent = 'Cédula *';
+                inputDocumento.placeholder = 'Ej: V-12345678';
+            }
+        });
+
+        radioJuridica.addEventListener('change', function() {
+            if (this.checked) {
+                labelDocumento.textContent = 'RIF *';
+                inputDocumento.placeholder = 'Ej: J-40123456-7';
+            }
+        });
+
+        // Manejar envío del formulario
+        document.getElementById('demoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Obtener datos del formulario
+            const nombre = document.getElementById('nombre').value.trim();
+            const tipo = document.querySelector('input[name="tipo"]:checked').value;
+            const documento = document.getElementById('documento').value.trim();
+            const bodega = document.getElementById('bodega').value.trim();
+            const telefono = document.getElementById('telefono').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            // Validar campos
+            let valid = true;
+
+            if (!nombre) {
+                document.getElementById('error-nombre').style.display = 'block';
+                valid = false;
+            } else {
+                document.getElementById('error-nombre').style.display = 'none';
+            }
+
+            if (!documento) {
+                document.getElementById('error-documento').style.display = 'block';
+                valid = false;
+            } else {
+                document.getElementById('error-documento').style.display = 'none';
+            }
+
+            if (!bodega) {
+                document.getElementById('error-bodega').style.display = 'block';
+                valid = false;
+            } else {
+                document.getElementById('error-bodega').style.display = 'none';
+            }
+
+            if (!telefono) {
+                document.getElementById('error-telefono').style.display = 'block';
+                valid = false;
+            } else {
+                document.getElementById('error-telefono').style.display = 'none';
+            }
+
+            if (!valid) return;
+
+            // Crear objeto con datos
+            const datosDemo = {
+                fecha: new Date().toLocaleString('es-VE'),
+                nombre: nombre,
+                tipo: tipo === 'natural' ? 'Natural' : 'Jurídica',
+                documento: documento,
+                bodega: bodega,
+                telefono: telefono,
+                email: email || 'No proporcionado'
+            };
+
+            // Guardar en localStorage
+            const demos = JSON.parse(localStorage.getItem('demos_bodega') || '[]');
+            demos.push(datosDemo);
+            localStorage.setItem('demos_bodega', JSON.stringify(demos));
+
+            // Mostrar mensaje de éxito
+            document.querySelector('form').style.display = 'none';
+            document.querySelector('.info-text').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+
+            // Enviar a WhatsApp automáticamente
+            const mensaje = encodeURIComponent(
+                `🛒 SOLICITUD DEMO BODEGA PRO\n\n` +
+                `📋 Nombre: ${nombre}\n` +
+                `📄 Tipo: ${datosDemo.tipo}\n` +
+                `🆔 ${tipo === 'natural' ? 'Cédula' : 'RIF'}: ${documento}\n` +
+                `🏪 Negocio: ${bodega}\n` +
+                `📱 Teléfono: ${telefono}\n` +
+                `📧 Email: ${datosDemo.email}\n\n` +
+                `✅ Listo para demo de 5 días`
+            );
+
+            // Notificar al ingeniero por WhatsApp
+            setTimeout(() => {
+                window.location.href = `https://wa.me/584164117331?text=${mensaje}`;
+            }, 2000);
+
+            console.log('Demo registrada:', datosDemo);
+        });
+    </script>
+</body>
+</html>

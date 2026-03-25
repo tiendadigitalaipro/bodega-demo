@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A2K Digital Studio — Soluciones Digitales para tu Negocio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: #8B6E2E;
+    --dark: #0D0D0F;
+    --dark2: #141418;
+    --dark3: #1C1C22;
+    --dark4: #252530;
+    --text: #F0EDE6;
+    --text-muted: #8A8794;
+    --border: rgba(201,168,76,0.2);
+    --border-hover: rgba(201,168,76,0.45);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* FONDO */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% -5%, rgba(201,168,76,0.1) 0%, transparent 55%),
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(201,168,76,0.018) 60px, rgba(201,168,76,0.018) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(201,168,76,0.018) 60px, rgba(201,168,76,0.018) 61px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(13,13,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: -0.01em;
+  }
+
+  .nav-logo span {
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    display: block;
+    text-transform: uppercase;
+    margin-top: -4px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--dark) !important;
+    padding: 7px 18px;
+    border-radius: 999px;
+    font-weight: 500 !important;
+    font-size: 12px !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 7rem 1.5rem 4rem;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .tag-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 1rem;
+    animation: fadeDown 0.8s 0.1s ease both;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+    text-shadow: 0 0 60px rgba(201,168,76,0.25);
+  }
+
+  .hero-sub {
+    font-size: clamp(14px, 2vw, 16px);
+    color: var(--text-muted);
+    font-weight: 300;
+    max-width: 480px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    animation: fadeDown 0.8s 0.2s ease both;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeDown 0.8s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold));
+    background-size: 200%;
+    color: var(--dark);
+    padding: 13px 28px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-position 0.4s, transform 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-primary:hover { background-position: 100%; transform: translateY(-2px); }
+
+  .btn-secondary {
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 13px 28px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-secondary:hover { border-color: var(--border-hover); color: var(--text); transform: translateY(-2px); }
+
+  .divider-gold {
+    width: 48px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 3rem auto;
+  }
+
+  /* STATS */
+  .stats {
+    position: relative; z-index: 1;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    padding: 0 1.5rem 5rem;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .stat { text-align: center; }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* SECCIÓN */
+  section {
+    position: relative; z-index: 1;
+    padding: 5rem 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 500px;
+    margin-bottom: 2.5rem;
+  }
+
+  /* PRODUCTOS */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .product-card {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: border-color 0.25s, transform 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .product-card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
+
+  .product-card.featured { border-color: rgba(201,168,76,0.45); }
+
+  .product-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: rgba(201,168,76,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    margin-bottom: 1rem;
+  }
+
+  .product-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 3px 10px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .product-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 1.1rem;
+  }
+
+  .product-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .product-price span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  .product-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-top: 1rem;
+    text-transform: uppercase;
+  }
+
+  /* SERVICIOS */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+
+  .service-item {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: border-color 0.2s;
+  }
+
+  .service-item:hover { border-color: var(--border-hover); }
+
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: rgba(201,168,76,0.2);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .service-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 5px;
+  }
+
+  .service-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* CTA FINAL */
+  .cta-section {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 5rem 1.5rem 6rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--gold-dim);
+    margin-bottom: 6px;
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(138,135,148,0.4);
+    font-weight: 300;
+  }
+
+  /* ANIMACIONES */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .stats { gap: 2rem; }
+    .hero h1 { font-size: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">A2K <span>Digital Studio</span></div>
+  <ul class="nav-links">
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="https://tiendadigitalaipro.github.io/bodega-demo/formulario-licencia-pro-bodega.html" class="nav-cta">Licencia Pro</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag"><div class="tag-dot"></div> Soluciones digitales — Venezuela</div>
+  <h1>Tu negocio,<br><em>digitalizado.</em></h1>
+  <p class="hero-sub">Sistemas de gestión, bots inteligentes y soluciones tecnológicas para negocios en los Valles del Tuy y todo Venezuela.</p>
+  <div class="hero-btns">
+    <a href="https://tiendadigitalaipro.github.io/bodega-demo/formulario-licencia-pro-bodega.html" class="btn-primary">
+      Obtener Licencia Pro ↗
+    </a>
+    <a href="https://tiendadigitalaipro.github.io/bodega-demo/formulario-demo-bodega.html" class="btn-secondary">
+      Probar Demo Gratis
+    </a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">+50</div><div class="stat-label">Negocios atendidos</div></div>
+  <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Soporte activo</div></div>
+  <div class="stat"><div class="stat-num">$25</div><div class="stat-label">Desde</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Hecho en Venezuela</div></div>
+</div>
+
+<div class="divider-gold"></div>
+
+<!-- PRODUCTOS -->
+<section id="productos">
+  <div class="section-tag">Nuestros productos</div>
+  <h2 class="section-title">Software que trabaja<br>por ti</h2>
+  <p class="section-sub">Herramientas diseñadas para el comercio venezolano — simples, rápidas y sin complicaciones.</p>
+
+  <div class="products-grid">
+    <a href="https://tiendadigitalaipro.github.io/bodega-demo/formulario-licencia-pro-bodega.html" class="product-card featured">
+      <div class="product-badge">⭐ Más popular</div>
+      <div class="product-icon">🛒</div>
+      <div class="product-name">BODEGA PRO</div>
+      <div class="product-desc">Sistema completo de gestión para bodegas, abastos y tiendas. Inventario, caja, facturación y reportes en un solo lugar.</div>
+      <div class="product-price">$25 <span>— 1 terminal</span></div>
+      <div class="product-price" style="font-size:1.1rem; margin-top:4px;">$45 <span>— 5 terminales</span></div>
+      <div class="product-link">Solicitar licencia →</div>
+    </a>
+
+    <a href="https://tiendadigitalaipro.github.io/bodega-demo/formulario-demo-bodega.html" class="product-card">
+      <div class="product-icon">🆓</div>
+      <div class="product-name">Demo Gratis</div>
+      <div class="product-desc">Prueba BODEGA PRO sin compromiso. Accede a las funciones principales y decide con confianza antes de comprar.</div>
+      <div class="product-price" style="color: var(--text-muted); font-size:1.2rem;">Sin costo</div>
+      <div class="product-link">Solicitar demo →</div>
+    </a>
+
+    <div class="product-card">
+      <div class="product-icon">🤖</div>
+      <div class="product-name">Bots Inteligentes</div>
+      <div class="product-desc">Automatiza tus ventas con bots para WhatsApp y Telegram. Atiende clientes, muestra catálogos y cierra ventas 24/7.</div>
+      <div class="product-price" style="font-size:1.1rem;">A consultar</div>
+      <div class="product-link" onclick="abrirWA()" style="cursor:pointer;">Consultar precio →</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-gold"></div>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="section-tag">¿Qué hacemos?</div>
+  <h2 class="section-title">Todo lo digital<br>para tu negocio</h2>
+  <p class="section-sub">Desde sistemas hasta automatización — somos tu equipo tech en los Valles del Tuy.</p>
+
+  <div class="services-grid">
+    <div class="service-item">
+      <div class="service-num">01</div>
+      <div class="service-name">Sistemas de gestión</div>
+      <div class="service-desc">Software a medida para control de inventario, ventas y caja registradora.</div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">02</div>
+      <div class="service-name">Bots de ventas</div>
+      <div class="service-desc">Automatización de WhatsApp y Telegram para atender clientes sin parar.</div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">03</div>
+      <div class="service-name">Páginas web</div>
+      <div class="service-desc">Presencia digital profesional para tu negocio o tienda online.</div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">04</div>
+      <div class="service-name">Soporte técnico</div>
+      <div class="service-desc">Atención personalizada para que tu sistema nunca se detenga.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-gold"></div>
+
+<!-- CTA -->
+<div class="cta-section" id="contacto">
+  <div class="section-tag" style="text-align:center;">¿Listo para empezar?</div>
+  <h2 class="section-title" style="margin-bottom:1rem;">Habla con nosotros<br><em style="color:var(--gold); font-style:normal;">hoy mismo</em></h2>
+  <p class="section-sub" style="margin: 0 auto 2rem;">Sin rodeos — cuéntanos qué necesitas y te damos la solución que tu negocio merece.</p>
+  <div class="hero-btns">
+    <button onclick="abrirWA()" class="btn-primary">Escribir por WhatsApp ↗</button>
+    <a href="https://tiendadigitalaipro.github.io/bodega-demo/formulario-licencia-pro-bodega.html" class="btn-secondary">Solicitar Licencia Pro</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">A2K Digital Studio</div>
+  <div class="footer-copy">© 2026 · Ocumare del Tuy, Venezuela · Todos los derechos reservados</div>
+</footer>
+
+<script>
+  function abrirWA() {
+    const msg = '¡Hola! Vengo desde la página de A2K Digital Studio y quisiera más información sobre sus servicios. 🖤';
+    window.open('https://wa.me/584164117331?text=' + encodeURIComponent(msg), '_blank');
+  }
+</script>
+</body>
+</html>
